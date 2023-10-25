@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Validator;
 class RegisterController extends Controller
 {
     public function index() {
-        return view('layout.user_register');
+        $users = User::all(); 
+        return view('layout.user_register', compact('users'));
+        
     }
 
     public function store(Request $request) {
@@ -28,6 +30,6 @@ class RegisterController extends Controller
         User::create($validated);
 
         // You might want to redirect to a success page or perform some other action
-        return redirect()->route('kelolauser'); // Change 'login' to the name of your login route
+        return redirect()->route('kelolauser')->with('success', 'Pengguna berhasil ditambah'); // Change 'login' to the name of your login route
     }
 }

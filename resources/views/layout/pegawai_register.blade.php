@@ -21,41 +21,54 @@
                         <form method="post" action="{{ route('store') }}">
                             @csrf
 
-                            <div class="row justify-content-center">
+                            <div class="row ">
                                 <div class="col-6">
                                     <div class="form-floating mb-3">
-                                        <input type="email" name="email" class="form-control" id="floatingInput"
-                                            placeholder="name@example.com">
-                                        <label for="floatingInput">Email address</label>
+                                        <input type="text" name="nama" class="form-control" id="floatingInput"
+                                            placeholder="Nama Lengkap">
+                                        <label for="floatingInput">Nama Lengkap</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-floating">
-                                        <input type="name" name="name" class="form-control" id="floatingPassword"
-                                            placeholder="Password">
-                                        <label for="floatingPassword">Username</label>
+                                        <input type="date" name="tanggal_lahir" class="form-control" id="floatingPassword"
+                                            placeholder="Tanggal Lahir ">
+                                        <label for="floatingPassword">Tanggal Lahir</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-floating">
-                                        <select name="role" id="role" class="form-select form-select-ms mb-3"
+                                        <select name="jenis_kelamin"  class="form-select form-select-ms mb-3"
                                             aria-label="Large select example">
-                                            <option selected>Level Admin</option>
-                                            <option value="admin">admin</option>
-
+                                            <option value="Laki-Laki">Laki-Laki</option>
+                                            <option value="Peremuan">Perempuan</option>
                                         </select>
-                                        <label for="floatingPassword">Level Admin</label>
+                                        <label for="floatingPassword">Jenis Kelamin</label>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-floating">
-                                        <input type="password" name="password" class="form-control"
+                                        <input type="email" name="email" class="form-control"
                                             id="floatingPassword" placeholder="Password">
-                                        <label for="floatingPassword">Password</label>
+                                        <label for="floatingPassword">Email</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-floating">
+                                        <input type="number" name="no_tlp" class="form-control"
+                                            id="floatingPassword" placeholder="Password">
+                                        <label for="floatingPassword">No Telpon</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-floating">
+                                        <input type="text" name="jabatan" class="form-control"
+                                            id="floatingPassword" placeholder="Password">
+                                        <label for="floatingPassword">Jabatan</label>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-2">
+                                    <div class="col-2 mt-4">
                                         <button type="submit" class="btn btn-primary btn-user btn-block"> Simpan
                                         </button>
                                     </div>

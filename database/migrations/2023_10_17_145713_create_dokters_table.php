@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dokters', function (Blueprint $table) {
-            $table->id();
-            $table->string('spesialisasi');
-            $table->string('jenis_kelamin');
-            $table->string('id_dokter');
-            $table->string('nama');
-            $table->string('email')->unique();
-            $table->string('no_tlp');
-            $table->date('tanggal_lahir');
-            $table->timestamps();
-        });
+         Schema::create('dokters', function (Blueprint $table) {
+        $table->id();
+        $table->string('spesialisasi');
+        $table->string('jenis_kelamin');
+        $table->string('id_dokter');
+        $table->string('nama');
+        $table->string('email')->unique();
+        $table->string('no_tlp');
+        $table->date('tanggal_lahir');
+        $table->timestamps();
+    });
     }
 
     /**

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-
 class DashboardController extends Controller
 {
     public function dashboard(){
@@ -25,6 +24,7 @@ class DashboardController extends Controller
     // Edit User
     public function edit_user(User $user)
 {
+ 
     return view('layout.user_edit', compact('user'));
 }
 // Update User

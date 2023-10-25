@@ -20,6 +20,7 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('template/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
 </head>
 
@@ -73,8 +74,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data Master</h6>
-                        <a class="collapse-item" href="buttons.html">Data Dokter</a>
-                        <a class="collapse-item" href="cards.html">Data Pegawai</a>
+                        <a class="collapse-item" href="{{route ('keloladokter')}}">Data Dokter</a>
+                        <a class="collapse-item" href="{{route ('kelolapegawai')}}">Data Pegawai</a>
                         <a class="collapse-item" href="cards.html">Data Paramedis</a>
                         <a class="collapse-item" href="cards.html">Data Diagnosa</a>
                     </div>
@@ -324,7 +325,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ $users->first()->name }}</span>
+
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">  </span>
                                 <img class="img-profile rounded-circle"
                                     src="{{ asset('img/member.svg') }}">
                             </a>
@@ -424,6 +426,8 @@
     <script src="{{ asset ('template/js/demo/chart-pie-demo.js') }}"></script>
     <!-- <script src="{{ asset ('template/js/demo/datatables-demo.js') }}"></script> -->
 
+   <!-- JS Bootsrap -->
+  <script src="{{ asset ('js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>
