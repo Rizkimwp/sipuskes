@@ -1,8 +1,6 @@
 @extends ('app')
-
-@section('content')
-
-
+@section('title', 'Kelola Post')
+@section('content') 
 <div class="container-fluid">
     @if (session('success'))
     <div class="alert alert-success">
@@ -10,15 +8,15 @@
     </div>
     @endif
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Kelola Pengguna</h1>
+    <h1 class="h3 mb-2 text-gray-800">Kelola Halaman Kontak</h1>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Kelola Pengguna</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Kelola Kontak</h6>
         </div>
-        <div class="col-3 m-3">
-            <a href="{{ route('createuser') }}" class="btn-lg btn-primary"> Tambah </a>
+        <div class="col-2 m-3">
+            <a href="{{ route('post.create') }}" class="btn-lg btn-primary"> Tambah </a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -49,64 +47,49 @@
                                         <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable"
                                             rowspan="1" colspan="1" aria-sort="ascending"
                                             aria-label="Name: activate to sort column descending"
-                                            style="width: 102.688px;">Id</th>
+                                            style="width: 20px;">Id</th>
+                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable"
+                                            rowspan="1" colspan="1" aria-sort="ascending"
+                                            aria-label="Name: activate to sort column descending"
+                                            style="width: 102.688px;">Judul</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
-                                            style="width: 166.195px;">Username</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Office: activate to sort column ascending"
-                                            style="width: 73.625px;">Email</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Age: activate to sort column ascending"
-                                            style="width: 30.1641px;">Level</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Start date: activate to sort column ascending"
-                                            style="width: 73.2031px;">Status</th>
+                                            style="width: 166.195px;">Excerpt</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
                                             style="width: 66.125px;">Aksi</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th rowspan="1" colspan="1">Id</th>
-                                        <th rowspan="1" colspan="1">Username</th>
-                                        <th rowspan="1" colspan="1">Email</th>
-                                        <th rowspan="1" colspan="1">Level</th>
-                                        <th rowspan="1" colspan="1">Status</th>
-
-                                    </tr>
-                                </tfoot>
                                 <tbody>
-
-                                    @foreach ($users as $user)
+                                    
+                                    @foreach ($posts as $post)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->role }}</td>
-                                        <td>{{ $user->created_at }}</td>
-                                        <td>
-                                            <div class="row justify-content-around">
-                                                    <div class="col">
-                                                <a href="{{ route('user.edit', $user->id) }}"
-                                                    class="btn-sm p-2 btn-primary"><img src="{{asset('img/edit.svg')}}"
-                                                        alt=""></a>
+                                      <td>{{ $post->id }}</td>
+                                        <td>{{ $post->judul }}</td>
+                                        <td>{{ $post->excerpt }}</td>
+                                        <td class="row align-items-start">
+                                        <div class="col-3">
+                                                <a href="{{ route('post.index', $post->id) }}"
+                                                    class="bg-info badge "> <i class="fas fa-fw fa-eye" alt="view"></i></a>
+                                                        </div>
+                                        <div class="col-3">
+                                                <a href="{{ route('post.edit', $post->id) }}"
+                                                    class="bg-warning badge "> <i class="fas fa-fw fa-marker" alt="edit"></i></a>
                                                         </div>
                                                         <div class="col">
-                                                <form method="post" action="{{ route('user.destroy', $user->id) }}"
-                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus pengguna ini?');">
+                                                <form method="post" action="{{ route('post.destroy', $post->id) }}" class="d-inline"
+                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn-sm btn-danger"><img
-                                                            src="{{asset('img/delete.svg')}}" alt=""></button>
+                                                    <button type="submit" class="badge bg-danger"><i class="fas fa-fw fa-trash" alt="delete"></i></button>
                                                 </form>
                                                 </div>
-                                            </div>
                                         </td>
 
                                     </tr>
                                     @endforeach
+                            
+                                
                                 </tbody>
                             </table>
                         </div>
@@ -148,5 +131,4 @@
 
 </div>
 
-
-@endsection
+@endsection 

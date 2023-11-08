@@ -1,5 +1,5 @@
 @extends ('app')
-
+@section('title', 'Kelola Paramedis')
 @section('content') 
 <div class="container-fluid">
     @if (session('success'))
@@ -8,15 +8,15 @@
     </div>
     @endif
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Kelola Dokter</h1>
+    <h1 class="h3 mb-2 text-gray-800">Kelola paramedis</h1>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Kelola Dokter</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Kelola paramedis</h6>
         </div>
         <div class="col-2 m-3">
-            <a href="{{ route('createdokter') }}" class="btn-lg btn-primary"> Tambah </a>
+            <a href="{{ route('paramedis.create') }}" class="btn-lg btn-primary"> Tambah </a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -48,20 +48,20 @@
                                             rowspan="1" colspan="1" aria-sort="ascending"
                                             aria-label="Name: activate to sort column descending"
                                             style="width: 102.688px;">Id</th>
-                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable"
-                                            rowspan="1" colspan="1" aria-sort="ascending"
-                                            aria-label="Name: activate to sort column descending"
-                                            style="width: 102.688px;">Id Dokter</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending"
                                             style="width: 166.195px;">Nama Lengkap</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Start date: activate to sort column ascending"
                                             style="width: 73.2031px;">Email</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
                                             style="width: 66.125px;">No Telepon</th>
-                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable"
+                                                rowspan="1" colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 102.688px;">Alamat</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Salary: activate to sort column ascending"
                                             style="width: 66.125px;">Spesialisasi</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
@@ -69,42 +69,29 @@
                                             style="width: 66.125px;">Aksi</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th rowspan="1" colspan="1">Id</th>
-                                        <th rowspan="1" colspan="1">Id Dokter</th>
-                                        <th rowspan="1" colspan="1">Nama Lengkap</th>
-                                        <th rowspan="1" colspan="1">Email </th>
-                                        <th rowspan="1" colspan="1">No Telpon </th>
-                                        <th rowspan="1" colspan="1">Spesialisasi </th>
-                                        <th rowspan="1" colspan="1">Aksi </th>
-
-                                    </tr>
-                                </tfoot>
                                 <tbody>
 
-                                    @foreach ($dokters as $dokter)
+                                    @foreach ($paramedis as $paramedis)
                                     <tr>
-                                      <td>{{ $dokter->id }}</td>
-                                      <td>{{ $dokter->id_dokter }}</td>
-                                        <td>{{ $dokter->nama }}</td>
-                                        <td>{{ $dokter->email }}</td>
-                                        <td>{{ $dokter->no_tlp }}</td>
-                                        <td>{{ $dokter->spesialisasi }}</td>
-                                        <td>
-                                            <div class="row justify-content-around">
-                                                <a href="{{ route('dokter.edit', $dokter->id) }}"
-                                                    class="btn-sm btn-primary"><img src="{{asset('img/edit.svg')}}"
-                                                        alt=""></a>
-
-                                                <form method="post" action="{{ route('dokter.destroy', $dokter->id) }}"
+                                      <td>{{ $paramedis->id }}</td>
+                                        <td>{{ $paramedis->nama }}</td>
+                                        <td>{{ $paramedis->email }}</td>
+                                        <td>{{ $paramedis->no_tlp }}</td>
+                                        <td>{{ $paramedis->alamat }}</td>
+                                        <td>{{ $paramedis->spesialisasi }}</td>
+                                        <td class="row align-items-start">
+                                        <div class="col-3">
+                                                <a href="{{ route('paramedis.edit', $paramedis->id) }}"
+                                                    class="bg-warning badge "> <i class="fas fa-fw fa-marker" alt="edit"></i></a>
+                                                        </div>
+                                                        <div class="col">
+                                                <form method="post" action="{{ route('paramedis.destroy', $paramedis->id) }}" class="d-inline"
                                                     onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn-sm btn-danger"><img
-                                                            src="{{asset('img/delete.svg')}}" alt=""></button>
+                                                    <button type="submit" class="badge bg-danger"><i class="fas fa-fw fa-trash" alt="delete"></i></button>
                                                 </form>
-                                            </div>
+                                                </div>
                                         </td>
 
                                     </tr>

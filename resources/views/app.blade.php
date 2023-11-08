@@ -9,18 +9,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sipuskes - Dashboard</title>
-
+    <title>Sipuskes - @yield('title')</title>
+    <!-- Trix Editor  -->
+    <link href="{{ asset('trix.css') }}" rel="stylesheet">
+    
+    <!-- Icon -->
+  
     <!-- Custom fonts for this template-->
     <link href="{{ asset('template/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
     <!-- Custom styles for this template-->
     <link href="{{ asset('template/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('template/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+
 
 </head>
 
@@ -36,7 +40,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url ('/dashboard')}}">
                 <div class="sidebar-brand-icon ">
-                <img src="{{ asset('img/logo-pkm.png') }}   " heigth="52px" width="48px" alt="Logo">
+                    <img src="{{ asset('img/logo-pkm.png') }}   " heigth="52px" width="48px" alt="Logo">
                 </div>
                 <div class="sidebar-brand-text mx-3">Sipuskes</div>
             </a>
@@ -60,8 +64,8 @@
             </div>
             <!-- Nav item Kelola Pengguna -->
             <li class="nav-item">
-                <a class="nav-link" href="/dashboard/kelolauser">
-                  <i class="fas fa-users fa-fw"> </i>
+                <a class="nav-link" href="{{ route('user.index')}}">
+                    <i class="fas fa-users fa-fw"> </i>
                     <span>Kelola Penguna</span></a>
             </li>
             <!-- Nav Item - Pages Collapse Menu -->
@@ -74,20 +78,20 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data Master</h6>
-                        <a class="collapse-item" href="{{route ('keloladokter')}}">Data Dokter</a>
-                        <a class="collapse-item" href="{{route ('kelolapegawai')}}">Data Pegawai</a>
-                        <a class="collapse-item" href="cards.html">Data Paramedis</a>
-                        <a class="collapse-item" href="cards.html">Data Diagnosa</a>
+                        <a class="collapse-item" href="{{route ('dokter.index')}}">Data Dokter</a>
+                        <a class="collapse-item" href="{{route ('pegawai.index')}}">Data Pegawai</a>
+                        <a class="collapse-item" href="{{route ('paramedis.index')}}">Data Paramedis</a>
+                        <a class="collapse-item" href="{{route ('diagnosa.index')}}">Data Diagnosa</a>
                     </div>
                 </div>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/dashboard/kelolauser">
-                  <i class="fas fa-fw fa-calendar"></i>
+                <a class="nav-link" href="{{route ('jadwal.index')}}">
+                    <i class="fas fa-fw fa-calendar"></i>
                     <span>Jadwal Praktek Dokter</span></a>
             </li>
-      
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -97,20 +101,20 @@
                 Addons
             </div>
 
-          
+
             <!-- Nav Item - Post -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{{route ('post.index')}}">
                     <i class="fas fa-fw fa-brush"></i>
                     <span>Post</span></a>
             </li>
             <!-- Nav Item - Laman  -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{{route ('page.index')}}">
                     <i class="fas fa-fw fa-layer-group"></i>
                     <span>Laman</span></a>
             </li>
-<!-- Nav Item - Media -->
+            <!-- Nav Item - Media -->
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-image"></i>
@@ -137,12 +141,7 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-            <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div>
+            
 
         </ul>
         <!-- End of Sidebar -->
@@ -269,8 +268,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -281,8 +279,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -293,8 +290,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -326,9 +322,8 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">  </span>
-                                <img class="img-profile rounded-circle"
-                                    src="{{ asset('img/member.svg') }}">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> </span>
+                                <img class="img-profile rounded-circle" src="{{ asset('img/member.svg') }}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -346,7 +341,8 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{route ('actionLogout')}}" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="{{route ('actionLogout')}}" data-toggle="modal"
+                                    data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -406,8 +402,8 @@
         </div>
     </div>
 
-<!-- Bootstrap core JavaScript-->
-<script src="{{ asset ('template/vendor/jquery/jquery.min.js') }}"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset ('template/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset ('template/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
@@ -426,8 +422,10 @@
     <script src="{{ asset ('template/js/demo/chart-pie-demo.js') }}"></script>
     <!-- <script src="{{ asset ('template/js/demo/datatables-demo.js') }}"></script> -->
 
-   <!-- JS Bootsrap -->
-  <script src="{{ asset ('js/bootstrap.bundle.min.js') }}"></script>
+    <!-- JS Bootsrap -->
+    <script src="{{ asset ('js/bootstrap.bundle.min.js') }}"></script>
+    <!-- Trix Editor  -->
+    <script src="{{ asset ('trix.js') }}"></script>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 @extends('app')
-
+@section('title', 'Edit Dokter')
 @section('content')
 
 
@@ -29,21 +29,25 @@
 
                             <div class="row">
                             <div class="col-6">
+                            <div class="form-floating mb-3 ">
+                                        <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" id="nama"
+                                            value="{{$dokter-> nama}}" placeholder="Nama Lengkap">
+                                        <label for="nama">Nama Lengkap</label>
+                                        @error ('nama')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
+                                    </div>
+                               
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="nama" value="{{ $dokter->nama }}" class="form-control" id="floatingInput"
-                                            placeholder="Nama Lengkap">
-                                        <label for="floatingInput">Nama Lengkap</label>
+                                        <input type="date" name="tanggal_lahir" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="tanggal_lahir"
+                                            value="{{$dokter-> tanggal_lahir}}" placeholder="Tanggal Lahir ">
+                                        <label for="tanggal_lahir">Tanggal Lahir</label>
+                                        @error ('tanggal_lahir')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
                                     </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-floating">
-                                        <input type="date" name="tanggal_lahir" value="{{ $dokter->tanggal_lahir }}" class="form-control" id="floatingPassword"
-                                            placeholder="Tanggal Lahir ">
-                                        <label for="floatingPassword">Tanggal Lahir</label>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-floating">
+                                 
+                                    <div class="form-floating mb-3">
                                         <select name="jenis_kelamin"  class="form-select form-select-ms mb-3"
                                             aria-label="Large select example">
                                             <option value="Laki-Laki">Laki-Laki</option>
@@ -51,35 +55,31 @@
                                         </select>
                                         <label for="floatingPassword">Jenis Kelamin</label>
                                     </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-floating">
-                                        <input type="email" name="email" value="{{ $dokter->email }}" class="form-control"
-                                            id="floatingPassword" placeholder="Password">
-                                        <label for="floatingPassword">Email</label>
+                              
+                                    <div class="form-floating mb-3">
+                                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                                            id="email" value="{{$dokter-> email}}" placeholder="Password">
+                                        <label for="email">Email</label>
+                                        @error ('email')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
                                     </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-floating">
-                                        <input type="number" name="no_tlp" value="{{ $dokter->no_tlp }}" class="form-control"
-                                            id="floatingPassword" placeholder="Password">
+                               
+                                    <div class="form-floating mb-3">
+                                        <input type="number" name="no_tlp" class="form-control"
+                                            id="floatingPassword" value="{{$dokter-> no_tlp}}" placeholder="Password">
                                         <label for="floatingPassword">No Telpon</label>
                                     </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-floating">
-                                        <input type="text" name="spesialisasi" value="{{ $dokter->spesialisasi }}" class="form-control"
-                                            id="floatingPassword" placeholder="Password">
+                                
+                                    <div class="form-floating mb-3">
+                                        <input type="text" name="spesialisasi" class="form-control @error('spesialisasi') is-invalid @enderror"
+                                            id="floatingPassword" value="{{$dokter-> spesialisasi}}" placeholder="Password">
                                         <label for="floatingPassword">Spesialisasi</label>
+                                        @error ('spesialisasi')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
                                     </div>
-                                </div>
-                                <div class="col-6 mt-3 mb-3">
-                                    <div class="form-floating">
-                                        <input type="number" name="id_dokter" value="{{ $dokter->id_dokter }}" class="form-control"
-                                            id="floatingPassword" placeholder="Password">
-                                        <label for="floatingPassword">Id Dokter</label>
-                                    </div>
-                                </div>
+                            </div>
                                 <div class="row">
                                     <div class="col-2">
                                         <button type="submit" class="btn btn-primary btn-user btn-block"> Simpan

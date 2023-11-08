@@ -11,48 +11,61 @@ class PegawaiController extends Controller
         $this->middleware('role:admin'); 
         $pegawai= Pegawai::all(); 
         $users = User::all(); 
-        return view ('layout.kelola_pegawai', compact('pegawai'));
+        return view ('layout.pegawai', compact('pegawai'));
     }
-    public function kelolapegawai() {
+    public function create() {
         $this->middleware('role:admin'); 
         $pegawai = Pegawai::all(); 
         $users = User::all(); 
         return view ('layout.pegawai_register', compact('pegawai'));
     }
 
-    public function storePegawai(Request $request)
+    public function store(Request $request)
     {
-        $pegawai = new Pegawai;
-        $pegawai->jabatan = $request->jabatan;
-        $pegawai->jenis_kelamin = $request->jenis_kelamin;
-        $pegawai->nama = $request->nama;
-        $pegawai->email = $request->email;
-        $pegawai->no_tlp = $request->no_tlp;
-        $pegawai->tanggal_lahir = $request->tanggal_lahir;
-        $pegawai->save();
+        $validatedData = $request ->validate([
+            'nama' => 'required|max:255|regex:/^[^0-9]*$/',
+            'email' => 'required|email|max:255|unique:users',
+            'jenis_kelamin' => 'required',
+            'tanggal_lahir' => 'required', 
+            'jabatan' => 'required',
+            'no_tlp' => 'required|min:10'
+        ]);
+      
+        Pegawai::create($validatedData);
     
-        return redirect()->route('kelolapegawai')->with('success', 'Data Dokter berhasil ditambahkan.');
+        return redirect()->route('pegawai.index')->with('success', 'Data Dokter berhasil ditambahkan.');
+    }
+        
+        
+
+    public function show() {
+
     }
 
-    public function edit_pegawai(Pegawai $pegawai){  
+    public function edit(Pegawai $pegawai){  
         return view('layout.pegawai_edit', compact('pegawai'));
     }
 
     public function update(Request $request, Pegawai $pegawai)
     {
-        $pegawai->update($request->only(
-        'jabatan',
-        'jenis_kelamin',
-        'nama',
-        'email',
-        'no_tlp',
-        'tanggal_lahir'));
-        return redirect()->route('kelolapegawai')->with('success', 'Pengguna berhasil diperbarui.');
+        $validatedData = $request ->validate([
+            'nama' => 'required|max:255|',
+            'email' => 'required|email|max:255|unique:users',
+            'jenis_kelamin' => 'required',
+            'tanggal_lahir' => 'required', 
+            'jabatan' => 'required',
+          'no_tlp' => 'required|min:10|numeric'
+        ]);
+      
+        Pegawai::where('id', $pegawai-> id) 
+        ->update($validatedData);
+    
+        return redirect()->route('pegawai.index')->with('success', 'Data Dokter berhasil ditambahkan.');
     }
     // Delete User
 public function destroy(Pegawai $pegawai)
 {
     $pegawai->delete();
-    return redirect()->route('kelolapegawai')->with('success', 'Data Dokter berhasil dihapus.');
+    return redirect()->route('pegawai.index')->with('success', 'Data Dokter berhasil dihapus.');
 }
 }

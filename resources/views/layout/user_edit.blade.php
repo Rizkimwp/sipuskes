@@ -1,5 +1,5 @@
 @extends('app')
-
+@section('title', 'Edit User')
 @section('content')
 
 
@@ -30,23 +30,29 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-floating mb-3">
-                                        <input type="email" name="email" value="{{ $user->email }}" class="form-control" id="floatingInput"
+                                        <input type="email" name="email" value="{{ $user->email }}" class="form-control @error ('email') is-invalid @enderror" id="email"
                                             placeholder="name@example.com">
-                                        <label for="floatingInput">Email address</label>
+                                        <label for="email">Email address</label>
+                                        @error ('email') 
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-floating">
-                                        <input type="name" name="name" value="{{ $user->name }}" class="form-control" id="floatingPassword"
-                                            placeholder="Password">
-                                        <label for="floatingPassword">Username</label>
+                                        <input type="name" name="name" value="{{ $user->name }}" class="form-control @error ('email') is-invalid @enderror" id="username"
+                                            placeholder="Username">
+                                        <label for="username">Username</label>
+                                        @error ('name') 
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-9 mb-3 ">
                                 <div class="form-floating">
-                                        <input type="name" name="name" value="{{ $user->role }}" class="form-control" id="floatingPassword"
-                                            placeholder="Password"  disabled>
-                                        <label for="floatingPassword">Level Admin</label>
+                                        <input type="name" name="role" value="{{ $user->role }}" class="form-control" id="role"
+                                            placeholder="Role"  disabled>
+                                        <label for="role">Level Admin</label>
                                     </div>
                                 </div>
                                 <div class="row">

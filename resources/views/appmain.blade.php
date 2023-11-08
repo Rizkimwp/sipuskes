@@ -49,14 +49,14 @@
     <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
       <ul class="navbar-nav open-sans fs-5 ">
         <li class="nav-item me-3 button">
-          <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+          <a class="nav-link active text-white" aria-current="page" href="{{route ('home')}}">Home</a>
         </li>
         <li class="nav-item dropdown me-3">
-          <a class="nav-link dropdown-toggle text-white button" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle text-white button" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Profile
           </a>
           <ul class="dropdown-menu fs-5 ">
-            <li><a class="dropdown-item " href="#">Action</a></li>
+            <li><a class="dropdown-item " href="{{ route ('profilePuskesmas')}}">Action</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
@@ -90,6 +90,15 @@
 
 @yield('content')
 
+
+<!-- Footer  -->
+
+<footer class="py-5 text-center text-body-secondary bg-body-tertiary">
+  <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+  <p class="mb-0">
+    <a href="#">Back to top</a>
+  </p>
+</footer>
 <!-- Bootstrap core JavaScript-->
 <script src="{{ asset ('template/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset ('template/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

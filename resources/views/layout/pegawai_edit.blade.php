@@ -1,10 +1,6 @@
 @extends('app')
-
+@section('title', 'Edit Pegawai')
 @section('content')
-
-
-    
-
 
 <div class="container-fluid">
     <!-- Page Heading -->
@@ -21,29 +17,32 @@
 
                 <div class="row justify-content-center">
                     <div class="col-lg-9">
-
                     <form method="POST" action="{{ route('pegawai.update', $pegawai->id) }}">
       
       @csrf
       @method('PUT')
 
                             <div class="row">
-                            <div class="col-6">
+                            <div class="col-8">
+                                    <div class="form-floating mb-3 ">
+                                        <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror" id="nama"
+                                            value="{{$pegawai -> nama}}" placeholder="Nama Lengkap">
+                                        <label for="nama">Nama Lengkap</label>
+                                        @error ('nama')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
+                                    </div>
+                               
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="nama" value="{{ $pegawai->nama }}" class="form-control" id="floatingInput"
-                                            placeholder="Nama Lengkap">
-                                        <label for="floatingInput">Nama Lengkap</label>
+                                        <input type="date" name="tanggal_lahir" class="form-control @error('tanggal_lahir') is-invalid @enderror" id="tanggal_lahir"
+                                            value="{{$pegawai -> tanggal_lahir}}" placeholder="Tanggal Lahir ">
+                                        <label for="tanggal_lahir">Tanggal Lahir</label>
+                                        @error ('tanggal_lahir')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
                                     </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-floating">
-                                        <input type="date" name="tanggal_lahir" value="{{ $pegawai->tanggal_lahir }}" class="form-control" id="floatingPassword"
-                                            placeholder="Tanggal Lahir ">
-                                        <label for="floatingPassword">Tanggal Lahir</label>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-floating">
+                                 
+                                    <div class="form-floating mb-3">
                                         <select name="jenis_kelamin"  class="form-select form-select-ms mb-3"
                                             aria-label="Large select example">
                                             <option value="Laki-Laki">Laki-Laki</option>
@@ -51,26 +50,29 @@
                                         </select>
                                         <label for="floatingPassword">Jenis Kelamin</label>
                                     </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-floating">
-                                        <input type="email" name="email" value="{{ $pegawai->email }}" class="form-control"
-                                            id="floatingPassword" placeholder="Password">
-                                        <label for="floatingPassword">Email</label>
+                              
+                                    <div class="form-floating mb-3">
+                                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
+                                            id="email" value="{{$pegawai -> email}}" placeholder="Password">
+                                        <label for="email">Email</label>
+                                        @error ('email')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
                                     </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-floating">
-                                        <input type="number" name="no_tlp" value="{{ $pegawai->no_tlp }}" class="form-control"
-                                            id="floatingPassword" placeholder="Password">
+                               
+                                    <div class="form-floating mb-3">
+                                        <input type="number" name="no_tlp" class="form-control"
+                                            id="floatingPassword" value="{{$pegawai -> no_tlp}}" placeholder="Password">
                                         <label for="floatingPassword">No Telpon</label>
                                     </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-floating">
-                                        <input type="text" name="jabatan" value="{{ $pegawai->jabatan}}" class="form-control"
-                                            id="floatingPassword" placeholder="Password">
+                                
+                                    <div class="form-floating mb-3">
+                                        <input type="text" name="jabatan" class="form-control @error('jabatan') is-invalid @enderror"
+                                            id="floatingPassword" value="{{$pegawai -> jabatan}}" placeholder="Password">
                                         <label for="floatingPassword">Jabatan</label>
+                                        @error ('jabatan')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row">

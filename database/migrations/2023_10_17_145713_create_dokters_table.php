@@ -15,7 +15,6 @@ return new class extends Migration
         $table->id();
         $table->string('spesialisasi');
         $table->string('jenis_kelamin');
-        $table->string('id_dokter');
         $table->string('nama');
         $table->string('email')->unique();
         $table->string('no_tlp');
