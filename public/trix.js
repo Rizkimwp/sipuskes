@@ -432,7 +432,7 @@ Copyright © 2022 Basecamp, LLC
                     .concat(s.indent, '" tabindex="-1">')
                     .concat(
                         s.indent,
-                        // '</button>\n      </span>\n\n      <span class="trix-button-group trix-button-group--file-tools" data-trix-button-group="file-tools">\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-attach" data-trix-action="attachFiles" title="'
+                        '</button>\n      </span>\n\n      <span class="trix-button-group trix-button-group--file-tools" data-trix-button-group="file-tools">\n        <button type="button" class="trix-button trix-button--icon trix-button--icon-attach" data-trix-action="attachFiles" title="'
                     )
                     .concat(s.attachFiles, '" tabindex="-1">')
                     .concat(

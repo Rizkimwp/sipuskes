@@ -10,7 +10,7 @@ class KontakController extends Controller
         $categori = Category::find(4);
         $posts = $categori->post;
 
-    return view('layout.kontak', compact('posts'));
+    return view('layout.post.kontak', compact('posts'));
 
     }
 }

@@ -28,3 +28,11 @@
     background: linear-gradient(180deg, #FFF 0%, #fce09b 39.06%);
   }
   
+  
+#map {
+  height: 100%;
+}
+
+/* 
+ * Optional: Makes the sample page fill the window. 
+ */

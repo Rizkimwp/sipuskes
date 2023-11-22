@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\ComplaintController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Post;
+
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiagnosaController;
 use App\Http\Controllers\LoginController;
@@ -17,7 +18,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\UserviewController;
-use App\Models\Category;
+use App\Http\Controllers\KontakController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +31,14 @@ use App\Models\Category;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [UserviewController::class, ('homeIndex')])->name('home');
-
+//  Userview
+Route::get('/', [UserviewController::class, ('homeindex')])->name('home');
+Route::get('/puskesmas/profile', [UserviewController::class, ('profileindex')])->name('profile'); 
+Route::get('/puskesmas/layanan', [UserviewController::class, ('layananindex')])->name('layanan'); 
+Route::get('/puskesmas/artikel', [UserviewController::class, ('artikelindex')])->name('artikel'); 
+Route::get('/puskesmas/kontak', [UserviewController::class, ('kontakindex')])->name('kontak'); 
+Route::get('/puskesmas/tanyadokter', [UserviewController::class, ('tanyadokterindex')])->name('tanyadokter'); 
+Route::post('/puskesmas/tanyadokter', [UserviewController::class, ('tanyadokterstore')])->name('tanyadokterstore'); 
 
 // Route Laman
 Route::resource('page', PageController::class )->middleware('auth', 'role:admin');
@@ -39,7 +47,7 @@ Route::resource('galery', GaleryController::class )->middleware('auth', 'role:ad
 // Route Home
 Route::resource('home', HomeController::class )->middleware('auth', 'role:admin');
 // Route Galery
-Route::resource('kontak', GaleryController::class )->middleware('auth', 'role:admin');
+Route::resource('kontak', KontakController::class )->middleware('auth', 'role:admin');
 // Route Galery
 Route::resource('layanan', LayananController::class )->middleware('auth', 'role:admin');
 // Route Post
@@ -47,6 +55,8 @@ Route::resource('post', PostsController::class )->middleware('auth', 'role:admin
 Route::get('/post/create/checkSlug', [PostsController::class, 'checkSlug'])->name('checkSlug');
 // Route Profile 
 Route::resource('profile', ProfileController::class)->middleware('auth', 'role:admin');
+// Route Pengaduan
+Route::resource('complaint', ComplaintController::class)->middleware('auth', 'role:admin');
 
 // Route Login dan Logout 
 Route::get('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
@@ -69,8 +79,5 @@ Route::resource('paramedis', ParamedisController::class, ['middleware'=> ['auth'
 // Route Kelola Jadwal Praktek Dokter
 Route::resource('jadwal', JadwalController::class, ['middleware'=> ['auth', 'role:admin']]);
 
+//  Post User View 
 
-Route::get('/puskesmas/profile', function(){
-    $posts = Post::where('category_id', 2)->get();
-    return view ('userview.profile', compact('posts'));
-})->name('profilePuskesmas');

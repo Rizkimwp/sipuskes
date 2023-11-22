@@ -11,13 +11,13 @@ class ParamedisController extends Controller
     public function index() {
         $this->middleware('role:admin'); 
         $paramedis = Paramedis::all(); 
-        return view ('layout.paramedis', compact('paramedis'));
+        return view ('layout.data.paramedis', compact('paramedis'));
     }
 
     public function create() {
         $this->middleware('role:admin'); 
         $paramedis = Paramedis::all(); 
-        return view ('layout.paramedis_register', compact('paramedis'));
+        return view ('layout.data.paramedis_register', compact('paramedis'));
     }
 
     public function store(Request $request)
@@ -44,7 +44,7 @@ class ParamedisController extends Controller
 //  View Edit Paramedis
     public function edit(Paramedis $paramedi){  
      
-        return view('layout.paramedis_edit', compact('paramedi'));
+        return view('layout.data.paramedis_edit', compact('paramedi'));
     }
 // Submit Update
 

@@ -8,12 +8,12 @@ class DiagnosaController extends Controller
 {
     public function index() {
         $diagnosas = Diagnosa::all();
-        return view ('layout.diagnosa', compact('diagnosas'));
+        return view ('layout.data.diagnosa', compact('diagnosas'));
     }
     public function create() {
         $this->middleware('role:admin'); 
         $diagnosas = Diagnosa::all(); 
-        return view ('layout.diagnosa_register', compact('diagnosas'));
+        return view ('layout.data.diagnosa_register', compact('diagnosas'));
 
     }
     public function store(Request $request)
@@ -33,7 +33,7 @@ class DiagnosaController extends Controller
     }
 
     public function edit(Diagnosa $diagnosa){  
-        return view('layout.diagnosa_edit', compact('diagnosa'));
+        return view('layout.data.diagnosa_edit', compact('diagnosa'));
     }
 
     public function update(Request $request, Diagnosa $diagnosa)

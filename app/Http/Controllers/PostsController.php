@@ -11,7 +11,7 @@ class PostsController extends Controller
 {
 public function index() {
     
-    return view ('layout.post', [
+    return view ('layout.post.post', [
         "title"=>"Post",
         "posts"=>Post::all()
     ]);
@@ -19,7 +19,7 @@ public function index() {
 }
 public function create() {
     $categories = Category::all();
-     return view ('layout.post_create', compact('categories'));
+     return view ('layout.post.post_create', compact('categories'));
 }
 
 public function store(Request $request) {
@@ -32,17 +32,17 @@ public function store(Request $request) {
     ]);
     
     // Menghapus tag HTML dari field 'body'
-    $validatedData['body'] = strip_tags($request->body);
+    // $validatedData['body'] = strip_tags($request->body);
     
     // Menghindari interpretasi tag HTML dengan mengubah karakter khusus
-    $validatedData['body'] = htmlspecialchars($validatedData['body']);
+    // $validatedData['body'] = htmlspecialchars($validatedData['body']);
     
     if ($request->file('image')) {
         $validatedData['image'] = $request->file('image')->store('post-images');
     }
     
     $validatedData['user_id'] = auth()->user()->id;
-    $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 100, '...');
+    $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 100);
     
     Post::create($validatedData);   
     return redirect()->route('post.index')->with('success', 'Data Post berhasil ditambahkan.');
@@ -59,7 +59,7 @@ return view ('userview.post', [
 
 public function edit(Post $post) {
     $categories = Category::all();
-    return view('layout.post_edit', compact('post', 'categories'));
+    return view('layout.post.post_edit', compact('post', 'categories'));
 
 }
 
@@ -68,21 +68,35 @@ public function update(Request $request, Post $post) {
     $rules = [
         'judul' => 'required|max:255',
         'category_id' => 'required',
-        'body' => 'required'
+        'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        'body' => 'required',
     ];
-
-    if($request->slug != $post->slug) {
-        $rules['slug'] = 'required|unique:posts';
+    
+    if ($request->slug != $post->slug) {
+        $rules['slug'] = 'required|unique:posts,slug,' . $post->id;
     }
-
+    
+    // Move validation before storing the image
     $validatedData = $request->validate($rules);
+    
+    if ($request->file('image')) {
+        // Store the image
+        $validatedData['image'] = $request->file('image')->store('post-images');
+    }
+    
+    // Menghapus tag HTML dari field 'body'
+    // $validatedData['body'] = strip_tags($validatedData['body']);
+    // Menghindari interpretasi tag HTML dengan mengubah karakter khusus
+    // $validatedData['body'] = htmlspecialchars($validatedData['body']);
+    
     $validatedData['user_id'] = auth()->user()->id;
-    $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 100, '...');
-        
-    Post::where('id', $post -> id) 
-    ->update($validatedData);
-
+    $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 100);
+    
+    // Ensure that you are using the correct path to the storage disk
+    Post::where('id', $post->id)->update($validatedData);
+    
     return redirect()->route('post.index')->with('success', 'Data Post berhasil diupdate.');
+    
 
 }
 

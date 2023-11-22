@@ -10,6 +10,6 @@ class GaleryController extends Controller
         $categori = Category::find(5);
         $posts = $categori->post;
 
-    return view('layout.galery', compact('posts'));
+    return view('layout.post.galery', compact('posts'));
 }
 }

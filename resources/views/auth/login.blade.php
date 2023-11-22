@@ -26,13 +26,16 @@
                             @endif
 
                             <form action="{{ route('actionLogin')}}" method="post">
-                                @csrf
+                                @csrf   
                                 <div class="form-group">
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="Email" autofocus>
+                                    <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" autofocus>
+                                    @error ('email') 
+                                    <div class="invalid-feedback">{{$message}}</div>
+                                    @enderror 
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="password" name="password" class="form-control form-control-user"
+                                    <input type="password" name="password" class="form-control form-control-user "
                                         id="password" placeholder="Password" required>
                                 </div>
 

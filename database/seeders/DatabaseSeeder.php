@@ -72,10 +72,7 @@ class DatabaseSeeder extends Seeder
             'title' => 'Kontak',
             'konten' => 'kontak'
         ]);
-        Page::create([
-            'title' => 'Galery',
-            'konten' => 'galery'
-        ]);
+       
 
        
 

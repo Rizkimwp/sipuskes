@@ -19,7 +19,7 @@ class Post extends Model
         'category_id', 
         'user_id', 
         'slug', 
-    'image'
+        'image'
 
 
     ];

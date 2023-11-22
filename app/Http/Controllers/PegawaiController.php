@@ -11,13 +11,13 @@ class PegawaiController extends Controller
         $this->middleware('role:admin'); 
         $pegawai= Pegawai::all(); 
         $users = User::all(); 
-        return view ('layout.pegawai', compact('pegawai'));
+        return view ('layout.data.pegawai', compact('pegawai'));
     }
     public function create() {
         $this->middleware('role:admin'); 
         $pegawai = Pegawai::all(); 
         $users = User::all(); 
-        return view ('layout.pegawai_register', compact('pegawai'));
+        return view ('layout.data.pegawai_register', compact('pegawai'));
     }
 
     public function store(Request $request)
@@ -43,7 +43,7 @@ class PegawaiController extends Controller
     }
 
     public function edit(Pegawai $pegawai){  
-        return view('layout.pegawai_edit', compact('pegawai'));
+        return view('layout.data.pegawai_edit', compact('pegawai'));
     }
 
     public function update(Request $request, Pegawai $pegawai)

@@ -10,12 +10,12 @@ class JadwalController extends Controller
 {
     public function index() {
         $jadwaldokter = JadwalDokter::all();
-        return view ('layout.jadwal', compact('jadwaldokter'));
+        return view ('layout.data.jadwal', compact('jadwaldokter'));
     }
     public function create() {
         $jadwaldokter = JadwalDokter::all(); 
         $dokters = Dokter::all();
-        return view ('layout.jadwal_register', compact('jadwaldokter', 'dokters'));
+        return view ('layout.data.jadwal_register', compact('jadwaldokter', 'dokters'));
     }
     public function store(Request $request)
     {
@@ -38,7 +38,8 @@ class JadwalController extends Controller
     }
 
     public function edit(JadwalDokter $jadwaldokter){  
-        return view('layout.jadwal_edit', compact('jadwaldokter'));
+        $dokters = Dokter::all();
+        return view('layout.data.jadwal_edit', compact('jadwaldokter', 'dokters'));
     }
 
     public function update(Request $request, JadwalDokter $jadwaldokter)

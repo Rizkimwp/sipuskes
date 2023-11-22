@@ -12,14 +12,14 @@ class DokterController extends Controller
         $this->middleware('role:admin'); 
         $dokters = Dokter::all(); 
         $users = User::all(); 
-        return view ('layout.dokter', compact('dokters', 'users'));
+        return view ('layout.data.dokter', compact('dokters', 'users'));
     }
 
     public function create() {
         $this->middleware('role:admin'); 
         $dokters = Dokter::all(); 
         $users = User::all(); 
-        return view ('layout.dokter_register', compact('dokters', 'users'));
+        return view ('layout.data.dokter_register', compact('dokters', 'users'));
     }
 
     public function store(Request $request)
@@ -44,7 +44,7 @@ class DokterController extends Controller
     }
 //  View Edit Dokter
     public function edit(Dokter $dokter){  
-        return view('layout.dokter_edit', compact('dokter'));
+        return view('layout.data.dokter_edit', compact('dokter'));
     }
 // Submit Update
 

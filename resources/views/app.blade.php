@@ -122,7 +122,7 @@
             </li>
             <!-- Nav Item - Faq & Komentar -->
             <li class="nav-item">
-                <a class="nav-link" href="template/tables.html">
+                <a class="nav-link" href="{{route ('complaint.index')}}">
                     <i class="fas fa-fw fa-comments"></i>
                     <span>Faq & Pengaduan</span></a>
             </li>
